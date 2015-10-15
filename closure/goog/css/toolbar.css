@@ -353,7 +353,7 @@
 .goog-toolbar-menu-button-dropdown {
   width: 7px;
   /* Client apps may override the URL at which they serve the sprite. */
-  background: url(//ssl.gstatic.com/editor/editortoolbar.png) no-repeat -388px 0;
+  background: url(../../goog/images/editortoolbar.png) no-repeat -388px 0;
   vertical-align: middle;
 }
 
