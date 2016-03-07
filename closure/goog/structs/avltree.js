@@ -65,6 +65,21 @@ goog.structs.AvlTree = function(opt_comparator) {
 };
 
 
+goog.structs.AvlTree.prototype.findFirst = function (value) {
+    var me = this;
+    var found = null;
+    this.inOrderTraverse(function(travNode) {
+        if (this.comparator_(travNode, {
+            value
+        }) === 0) {
+            found = travNode;
+
+        }
+
+        return true;
+    }, value);
+    return found;
+}
 /**
  * String comparison function used to compare values in the tree. This function
  * is used by default if no comparator is specified in the tree's constructor.
