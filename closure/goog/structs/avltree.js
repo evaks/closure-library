@@ -64,14 +64,16 @@ goog.structs.AvlTree = function(opt_comparator) {
                      goog.structs.AvlTree.DEFAULT_COMPARATOR_;
 };
 
-
+/**
+ * find the first occurance of that in the list
+ * @param {T} the value to find
+ * @return {?T} the value or null
+ */
 goog.structs.AvlTree.prototype.findFirst = function (value) {
     var me = this;
     var found = null;
     this.inOrderTraverse(function(travNode) {
-        if (this.comparator_(travNode, {
-            value
-        }) === 0) {
+        if (me.comparator_(travNode, value ) === 0) {
             found = travNode;
 
         }
