@@ -66,7 +66,7 @@ goog.structs.AvlTree = function(opt_comparator) {
 
 /**
  * find the first occurance of that in the list
- * @param {T} the value to find
+ * @param {T} value to find
  * @return {?T} the value or null
  */
 goog.structs.AvlTree.prototype.findFirst = function (value) {
