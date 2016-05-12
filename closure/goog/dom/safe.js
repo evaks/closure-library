@@ -38,6 +38,7 @@
  */
 
 goog.provide('goog.dom.safe');
+goog.provide('goog.dom.safe.InsertAdjacentHtmlPosition');
 
 goog.require('goog.asserts');
 goog.require('goog.html.SafeHtml');
@@ -45,6 +46,27 @@ goog.require('goog.html.SafeUrl');
 goog.require('goog.html.TrustedResourceUrl');
 goog.require('goog.string');
 goog.require('goog.string.Const');
+
+
+/** @enum {string} */
+goog.dom.safe.InsertAdjacentHtmlPosition = {
+  AFTERBEGIN: 'afterbegin',
+  AFTEREND: 'afterend',
+  BEFOREBEGIN: 'beforebegin',
+  BEFOREEND: 'beforeend'
+};
+
+
+/**
+ * Inserts known-safe HTML into a Node, at the specified position.
+ * @param {!Node} node The node on which to call insertAdjacentHTML.
+ * @param {!goog.dom.safe.InsertAdjacentHtmlPosition} position Position where
+ *     to insert the HTML.
+ * @param {!goog.html.SafeHtml} html The known-safe HTML to insert.
+ */
+goog.dom.safe.insertAdjacentHtml = function(node, position, html) {
+  node.insertAdjacentHTML(position, goog.html.SafeHtml.unwrap(html));
+};
 
 
 /**
@@ -105,6 +127,30 @@ goog.dom.safe.setAnchorHref = function(anchor, url) {
     safeUrl = goog.html.SafeUrl.sanitize(url);
   }
   anchor.href = goog.html.SafeUrl.unwrap(safeUrl);
+};
+
+
+/**
+ * Safely assigns a URL to an image element's src property.
+ *
+ * If url is of type goog.html.SafeUrl, its value is unwrapped and assigned to
+ * image's src property.  If url is of type string however, it is first
+ * sanitized using goog.html.SafeUrl.sanitize.
+ *
+ * @param {!HTMLImageElement} imageElement The image element whose src property
+ *     is to be assigned to.
+ * @param {string|!goog.html.SafeUrl} url The URL to assign.
+ * @see goog.html.SafeUrl#sanitize
+ */
+goog.dom.safe.setImageSrc = function(imageElement, url) {
+  /** @type {!goog.html.SafeUrl} */
+  var safeUrl;
+  if (url instanceof goog.html.SafeUrl) {
+    safeUrl = url;
+  } else {
+    safeUrl = goog.html.SafeUrl.sanitize(url);
+  }
+  imageElement.src = goog.html.SafeUrl.unwrap(safeUrl);
 };
 
 
@@ -315,11 +361,12 @@ goog.dom.safe.openInWindow = function(
     safeUrl = goog.html.SafeUrl.sanitize(url);
   }
   var win = opt_openerWin || window;
-  return win.open(goog.html.SafeUrl.unwrap(safeUrl),
+  return win.open(
+      goog.html.SafeUrl.unwrap(safeUrl),
       // If opt_name is undefined, simply passing that in to open() causes IE to
       // reuse the current window instead of opening a new one. Thus we pass ''
       // in instead, which according to spec opens a new window. See
       // https://html.spec.whatwg.org/multipage/browsers.html#dom-open .
-      opt_name ? goog.string.Const.unwrap(opt_name) : '',
-      opt_specs, opt_replace);
+      opt_name ? goog.string.Const.unwrap(opt_name) : '', opt_specs,
+      opt_replace);
 };
