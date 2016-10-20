@@ -60,11 +60,12 @@ goog.require('goog.ui.registry');
  * @extends {goog.ui.MenuButton}
  */
 goog.ui.Select = function(
-    opt_caption, opt_menu, opt_renderer, opt_domHelper, opt_menuRenderer) {
+    opt_caption, opt_menu, opt_renderer, opt_domHelper, opt_menuRenderer, opt_buttonRenderer) {
   goog.ui.Select.base(
       this, 'constructor', opt_caption, opt_menu, opt_renderer, opt_domHelper,
       opt_menuRenderer ||
           new goog.ui.MenuRenderer(goog.a11y.aria.Role.LISTBOX));
+    this.buttonRenderer_ = opt_buttonRenderer;
   /**
    * Default caption to show when no option is selected.
    * @private {goog.ui.ControlContent}
@@ -437,7 +438,12 @@ goog.ui.Select.prototype.listenToSelectionModelEvents_ = function() {
  */
 goog.ui.Select.prototype.updateCaption = function() {
   var item = this.getSelectedItem();
-  this.setContent(item ? item.getCaption() : this.defaultCaption_);
+    if (this.buttonRenderer_ && item) {
+        this.setContent(this.buttonRenderer_(item));
+    }
+    else {
+        this.setContent(item ? item.getCaption() : this.defaultCaption_);
+    }
 
   var contentElement = this.getRenderer().getContentElement(this.getElement());
   // Despite the ControlRenderer interface indicating the return value is
