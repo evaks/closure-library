@@ -56,6 +56,8 @@ goog.require('goog.ui.registry');
  *     document interaction.
  * @param {!goog.ui.MenuRenderer=} opt_menuRenderer Renderer used to render or
  *     decorate the menu; defaults to {@link goog.ui.MenuRenderer}.
+ * @param {!function(*)=} opt_buttonRenderer Renderer used to render or
+ *     decorate the menu; defaults to {@link goog.ui.MenuRenderer}.
  * @constructor
  * @extends {goog.ui.MenuButton}
  */
