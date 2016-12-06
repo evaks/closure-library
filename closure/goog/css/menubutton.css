@@ -15,7 +15,7 @@
 /* State: resting. */
 .goog-menu-button {
   /* Client apps may override the URL at which they serve the image. */
-  background: #ddd url(//ssl.gstatic.com/editor/button-bg.png) repeat-x top left;
+  background: #ddd url(../../images-editor-button-bg.png) repeat-x top left;
   border: 0;
   color: #000;
   cursor: pointer;
