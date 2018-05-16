@@ -280,6 +280,12 @@ goog.ui.Tooltip.prototype.attach = function(el) {
       el, goog.events.EventType.MOUSEOUT, this.handleMouseOutAndBlur, false,
       this);
   goog.events.listen(
+      el, goog.events.EventType.MOUSELEAVE, this.handleMouseOutAndBlur, false,
+      this);
+  goog.events.listen(
+      el, goog.events.EventType.MOUSEENTER, this.handleMouseOver, false,
+      this);
+  goog.events.listen(
       el, goog.events.EventType.MOUSEMOVE, this.handleMouseMove, false, this);
   goog.events.listen(
       el, goog.events.EventType.FOCUS, this.handleFocus, false, this);
@@ -321,6 +327,12 @@ goog.ui.Tooltip.prototype.detachElement_ = function(el) {
       el, goog.events.EventType.MOUSEOVER, this.handleMouseOver, false, this);
   goog.events.unlisten(
       el, goog.events.EventType.MOUSEOUT, this.handleMouseOutAndBlur, false,
+      this);
+  goog.events.unlisten(
+      el, goog.events.EventType.MOUSELEAVE, this.handleMouseOutAndBlur, false,
+      this);
+  goog.events.unlisten(
+      el, goog.events.EventType.MOUSEENTER, this.handleMouseOver, false,
       this);
   goog.events.unlisten(
       el, goog.events.EventType.MOUSEMOVE, this.handleMouseMove, false, this);
