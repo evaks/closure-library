@@ -101,7 +101,7 @@ See the COPYING file for details.
                 <span style="vertical-align:middle">File</span>
                 <!-- This DIV will be auto-decorated with a menu. -->
                 <div id="fileMenu" class="goog-menu">
-                  <div class="goog-menuitem">Open</div>
+                  <div class="goog-menuitem">Open Me</div>
                   <div class="goog-menuitem">Save</div>
                   <div class="goog-menuseparator"></div>
                   <div class="goog-menuitem">Close</div>
@@ -150,7 +150,7 @@ See the COPYING file for details.
   // Create programmatic menu bar with menus.
   buildMenu = function(rootNode) {
     var menubar = goog.ui.menuBar.create();
-    var menuNames = ["File","Edit","About"];
+    var menuNames = ["File 1","Edit","About"];
     var menuOptions = [];
     menuOptions[0] = ['New Files', 'Open File', null, 'Exit'];
     menuOptions[1] = ['Copy', 'Paste'];
@@ -169,7 +169,7 @@ See the COPYING file for details.
             item = new goog.ui.MenuSeparator();
           }
           item.setDispatchTransitionEvents(goog.ui.Component.State.ALL, true);
-          menu.addItem(item);
+          menu.addChild(item, true);
         });
 
       // Create a button inside menubar.
@@ -178,8 +178,8 @@ See the COPYING file for details.
       menubar.addChild(btn, true);
       goog.events.listen(btn, EVENTS, logEvent);
     }
-    menubar.render(goog.dom.getElement('menuBarProgrammatic'));
-  }
+    menubar.render(rootNode);
+  };
 
   // Set up a logger.
   var timer = goog.now();
@@ -189,7 +189,7 @@ See the COPYING file for details.
   logconsole.setCapturing(true);
 
   var EVENTS = goog.object.getValues(goog.ui.Component.EventType);
-  goog.log.fine(logger, 'Listening for: ' + EVENTS.join(', ') + '.');
+//  goog.log.fine(logger, 'Listening for: ' + EVENTS.join(', ') + '.');
 
   function logEvent(e) {
     var component = e.target;

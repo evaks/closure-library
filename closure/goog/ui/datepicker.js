@@ -1037,7 +1037,7 @@ goog.ui.DatePicker.prototype.createDom = function() {
 /** @override */
 goog.ui.DatePicker.prototype.enterDocument = function() {
   goog.ui.DatePicker.superClass_.enterDocument.call(this);
-
+  this.updateNavigationRow_();
   var eh = this.getHandler();
   eh.listen(
       this.tableBody_, goog.events.EventType.CLICK, this.handleGridClick_);
