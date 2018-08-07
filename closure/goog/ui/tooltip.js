@@ -86,6 +86,7 @@ goog.ui.Tooltip = function(opt_el, opt_str, opt_domHelper) {
    * Elements this widget is attached to.
    * @type {goog.structs.Set}
    * @private
+   * @suppress {deprecated}
    */
   this.elements_ = new goog.structs.Set();
 

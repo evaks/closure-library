@@ -69,7 +69,7 @@ var AvlTree = function(opt_comparator) {
  * @param {T} value to find
  * @return {?T} the value or null
  */
-goog.structs.AvlTree.prototype.findFirst = function (value) {
+AvlTree.prototype.findFirst = function (value) {
     var me = this;
     var found = null;
     this.inOrderTraverse(function(travNode) {
