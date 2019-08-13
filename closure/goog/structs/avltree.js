@@ -81,7 +81,8 @@ AvlTree.prototype.findFirst = function (value) {
         return true;
     }, value);
     return found;
-}
+};
+
 /**
  * String comparison function used to compare values in the tree. This function
  * is used by default if no comparator is specified in the tree's constructor.
